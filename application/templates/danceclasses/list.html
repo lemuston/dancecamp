@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <table>
+    <tr>
+      <th>Dance classes available: </th>
+      
+    </tr>
+    {% for danceclass in dancecamp %}
+    <tr>
+      <td>{{ danceclass.name }}</td>
+      
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock %}

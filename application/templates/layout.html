@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf-8">
+      <title>Dancecamp</title>
+    </head>
+    
+    <body>
+      <ul>
+	<li><a href="{{ url_for('danceclasses_index') }}">List classes</a></li>
+	<li><a href="{{ url_for('danceclasses_form') }}">Add new class</a></li>
+      </ul>
+      
+      {% block body %}
+      <p>
+	Content.
+      </p>
+      {% endblock %}
+    </body>
+  </html>
