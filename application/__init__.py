@@ -2,6 +2,7 @@
 from flask import Flask
 app = Flask(__name__)
 
+
 #tietokanta
 from flask_sqlalchemy import SQLAlchemy
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///dancecamp.db"
@@ -17,6 +18,8 @@ from application.danceclasses import views
 
 from application.auth import models
 from application.auth import views
+
+
 
 # kirjautuminen
 from application.auth.models import User

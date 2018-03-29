@@ -1,8 +1,10 @@
-from application import app, db
 from flask import redirect, render_template, request, url_for
-from flask import login_required
-from application.danceclasses.models import Danceclass
+from flask_login import login_required
+from application import app
 from application.danceclasses.forms import DanceclassForm
+from application.danceclasses.models import Danceclass
+from application import db
+
 
 
 @app.route("/danceclasses", methods=["GET"])
@@ -17,9 +19,9 @@ def danceclasses_form():
 
 @app.route("/danceclasses/<danceclass_id>", methods=["POST"])
 @login_required
-def danceclasses_set_done(task_id):
+def danceclasses_set_done(danceclass_id):
 
-    t = Danceclass.query.get(task_id)
+    t = Danceclass.query.get(danceclass_id)
     #t.done = True
     db.session().commit()
   
@@ -30,7 +32,7 @@ def dancecamp_create():
     form = DanceclassForm(request.form)
 
     t = Danceclass(form.name.data)
-    t.duration = form.done.data
+  #  t.duration = form.done.data
 
     db.session().add(t)
     db.session().commit()
