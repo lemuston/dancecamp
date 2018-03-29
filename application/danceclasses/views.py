@@ -1,6 +1,8 @@
 from application import app, db
 from flask import redirect, render_template, request, url_for
 from application.danceclasses.models import Danceclass
+from application.danceclasses.forms import DanceclassForm
+
 
 @app.route("/danceclasses", methods=["GET"])
 def danceclasses_index():
@@ -9,10 +11,10 @@ def danceclasses_index():
 
 @app.route("/danceclasses/new/")
 def danceclasses_form():
-    return render_template("danceclasses/new.html")
+    return render_template("danceclasses/new.html", form = DanceclassForm())
 
 @app.route("/danceclasses/", methods=["POST"])
-def danceclasses_create():
+def dancecamp_create():
     t = Danceclass(request.form.get("name"))
 
     db.session().add(t)

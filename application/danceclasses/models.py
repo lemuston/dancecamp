@@ -1,5 +1,7 @@
 from application import db
-#from sqlalchemy import Column, Integer, String
+
+
+
 
 class Danceclass(db.Model):
     id = db.Column(db.Integer, primary_key=True)
