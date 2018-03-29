@@ -1,8 +1,5 @@
 from application import db
 
-
-
-
 class Danceclass(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
@@ -10,8 +7,10 @@ class Danceclass(db.Model):
     onupdate=db.func.current_timestamp())
 
     name = db.Column(db.String(144), nullable=False)
+   # duration = db.Column(db.Integer), nullable=False)
   #  done = db.Column(db.Boolean, nullable=False)
 
     def __init__(self, name):
         self.name = name
-        self.done = False
+     #   self.duration = duration
+        

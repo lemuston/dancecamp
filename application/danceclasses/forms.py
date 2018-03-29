@@ -1,9 +1,9 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField
-from application.danceclasses.views import DanceclassForm
+from wtforms import BooleanField, StringField, validators, IntegerField
 
 class DanceclassForm(FlaskForm):
-    name = StringField("name")
+    name = StringField("name"), [validators.Length(min=2)]
+    duration = IntegerField("duration")
  
     class Meta:
         csrf = False
