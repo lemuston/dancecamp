@@ -9,13 +9,13 @@ from application import db
 
 @app.route("/danceclasses", methods=["GET"])
 def danceclasses_index():
-    return render_template("danceclasses/list.html", danceclasses = Danceclass.query.all())
+return render_template("danceclasses/list.html", danceclasses = Danceclass.query.all())
 
 
 @app.route("/danceclasses/new/")
 @login_required
 def danceclasses_form():
-    return render_template("danceclasses/new.html", form = DanceclassForm())
+return render_template("danceclasses/new.html", form = DanceclassForm())
 
 @app.route("/danceclasses/<danceclass_id>", methods=["POST"])
 @login_required
