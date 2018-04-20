@@ -3,3 +3,5 @@ Midnight Sun Dance Camp on viikon kestävä tanssileiri jossa järjestetään ma
 Leirin tarjonta näkyy kaikille mutta tanssileirille ilmoittautuminen vaatii kirjautumisen järjestelmään. Järjestelmä ilmoittaa tanssijalle yhteenvedon ilmoittautumisista, kaikkien tuntien hinnan yhteensä, maksuohjeet sekä tarjoaa mahdollisuuden perua ilmoittatumisen. Jos tanssija erikseen pyytää laskua varausmaksusta, sellainen lähetetään.
 
 Tanssileirin järjestäjän on mahdollista nähdä myös yhteenveto eri tunneille ilmoittautuneista sekä paljonko maksuja on yhteensä koossa. Tanssileirin järjestäjän on mahdollista myös lisätä tunteja ja poistaa niitä mikäli jokin tanssitunti peruuntuu.
+
+[[https://github.com/lemuston/dancecamp/documentation/diagram.png]]
