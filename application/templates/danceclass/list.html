@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <table>
+    <tr>
+      <th>Name</th>
+      
+    jooop
+    {% for danceclass in danceclasses %}
+   
+      <p>{{ danceclass.name }}</p>
+      <form method="POST" action="./update">
+        <input type="hidden" value="{{danceclass.name}}" name="oldtitle">
+        <input type="text" value="{{danceclass.name}}" name="newtitle">
+        <input type="submit" value="Update">
+      </form>
+      <form method="POST" action="./delete">
+        <input type="hidden" value="{{danceclass.name}}" name="title">
+        <input type="submit" value="Delete">
+      </form>
+    {% endfor %}
+  </table>
+{% endblock %}

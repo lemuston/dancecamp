@@ -1,26 +1,25 @@
 from application import db
+from application.models import Base
 
-class User(db.Model):
+class User(Base):
 
     __tablename__ = "account"
-  
-    id = db.Column(db.Integer, primary_key=True)
-    date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
-    date_modified = db.Column(db.DateTime, default=db.func.current_timestamp(),
-                              onupdate=db.func.current_timestamp())
-
-    name = db.Column(db.String(144), nullable=False)
+   # __table_args__ = {'extend_existing': True} 
     username = db.Column(db.String(144), nullable=False)
     password = db.Column(db.String(144), nullable=False)
 
-    def __init__(self, name, username, password):
-        self.name = name
-        self.username = username
-        self.password = password
+    phone = db.Column(db.String(144))
+    email = db.Column(db.String(100))
+    
+
+    #danceclass = db.relationship("Danceclass", backref='account', lazy=True)
   
+    def __init__(self, name):
+        self.name = name
+
     def get_id(self):
         return self.id
-
+  
     def is_active(self):
         return True
 
@@ -29,3 +28,6 @@ class User(db.Model):
 
     def is_authenticated(self):
         return True
+
+    def roles(self):
+        return ["ADMIN"]

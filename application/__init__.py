@@ -1,5 +1,6 @@
 from flask import Flask
 app = Flask(__name__)
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 from flask_sqlalchemy import SQLAlchemy
 
@@ -8,20 +9,65 @@ import os
 if os.environ.get("HEROKU"):
     app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
 else:
-    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///tasks.db"    
+    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///dancecamp.db"    
     app.config["SQLALCHEMY_ECHO"] = True
 
 #Oman sovelluksen toiminnallisuudet
 db = SQLAlchemy(app)
 
-from application import views
+# login functionality
+from os import urandom
+app.config["SECRET_KEY"] = urandom(32)
 
-from application.danceclasses import models
-from application.danceclasses import views
+from flask_login import LoginManager, current_user
+login_manager = LoginManager()
+login_manager.setup_app(app)
+
+login_manager.login_view = "auth_login"
+login_manager.login_message = "Please login to use this functionality."
+
+
+# roles in login_required
+from functools import wraps
+
+def login_required(role="ANY"):
+    def wrapper(fn):
+        @wraps(fn)
+        def decorated_view(*args, **kwargs):
+            if not current_user.is_authenticated():
+                return login_manager.unauthorized()
+            
+            unauthorized = False
+
+            if role != "ANY":
+                unauthorized = True
+                
+                for user_role in current_user.roles():
+                    if user_role == role:
+                        unauthorized = False
+                        break
+
+            if unauthorized:
+                return login_manager.unauthorized()
+            
+            return fn(*args, **kwargs)
+        return decorated_view
+    return wrapper
+
+from application.danceclass import models
+from application.danceclass import views
+
+from application import views
+from application import models
 
 from application.auth import models
 from application.auth import views
 
+from application.teacher import models
+
+from application.location import models
+
+from application.userdanceclass import models
 
 
 # kirjautuminen
