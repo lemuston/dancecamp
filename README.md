@@ -4,4 +4,3 @@ Leirin tarjonta näkyy kaikille mutta tanssileirille ilmoittautuminen vaatii kir
 
 Tanssileirin järjestäjän on mahdollista nähdä myös yhteenveto eri tunneille ilmoittautuneista sekä paljonko maksuja on yhteensä koossa. Tanssileirin järjestäjän on mahdollista myös lisätä tunteja ja poistaa niitä mikäli jokin tanssitunti peruuntuu.
 
-[[https://github.com/lemuston/dancecamp/documentation/diagram.png]]
