@@ -10,45 +10,35 @@ from application import db
 def danceclass_index():
     return render_template("danceclass/list.html", danceclasses = Danceclass.query.all()) 
 
+@app.route("/danceclass/<string:id>/")
+def danceclass_show(id):
+    return render_template('danceclass/show.html', danceclass = Danceclass.query.filter_by(id=id).first())
+
+@app.route('/danceclass/dashboard/')
+def danceclass_dashboard():
+    return render_template('danceclass/dashboard.html')
+
 @app.route("/danceclass/new/")
-@login_required
 def danceclass_form():
     return render_template("danceclass/new.html", form = DanceclassForm())
-
-@app.route("/danceclass/<danceclass_id>", methods=["POST"])
-def danceclass_set_done(danceclass_id):
-
-    t = Danceclass.query.get(danceclass_id)
-    #t.done = True
-    db.session().commit()
-  
-    return redirect(url_for("danceclass_index"))
 
 @app.route("/danceclass/", methods=["POST"])
 def danceclass_create():
     form = DanceclassForm(request.form)
-
-    t = Danceclass(form.name.data)
+    t = Danceclass(form.name.data, form.length.data, form.descr.data)
+    t.danceclass_id = teacher.id
   
-
     db.session().add(t)
     db.session().commit()
 
     return redirect(url_for("danceclass_index"))
 
-@app.route("/update", methods=["POST"])
-def update():
-    newtitle = request.form.get("newtitle")
-    oldtitle = request.form.get("oldtitle")
-    danceclass = Danceclass.query.filter_by(name=oldtitle).first()
-    danceclass.name = newtitle
-    db.session.commit()
-    return redirect("/")
+@app.route("/danceclass/delete/<string:id>", methods=["POST"])
+def danceclass_delete(id):
+    form = DanceclassForm(request.form)
+    d = Danceclass.query.filter_by(id=id).first()
+  
+    db.session().delete(d)
+    db.session().commit()
 
-@app.route("/delete", methods=["POST"])
-def delete():
-    title = request.form.get("name")
-    danceclass = Danceclass.query.filter_by(name=title).first()
-    db.session.delete(danceclass)
-    db.session.commit()
-    return redirect("/")
+    return redirect(url_for("danceclass_index"))

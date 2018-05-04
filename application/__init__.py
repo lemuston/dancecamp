@@ -54,11 +54,11 @@ def login_required(role="ANY"):
         return decorated_view
     return wrapper
 
-from application.danceclass import models
-from application.danceclass import views
-
 from application import views
 from application import models
+
+from application.danceclass import models
+from application.danceclass import views
 
 from application.auth import models
 from application.auth import views

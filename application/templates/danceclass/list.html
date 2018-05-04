@@ -1,23 +1,36 @@
 {% extends "layout.html" %}
 
 {% block body %}
-  <table>
-    <tr>
-      <th>Name</th>
+  <h1>Danceclasses available:</h1>
+  <ul class='list-group'>
       
-    jooop
-    {% for danceclass in danceclasses %}
    
-      <p>{{ danceclass.name }}</p>
-      <form method="POST" action="./update">
-        <input type="hidden" value="{{danceclass.name}}" name="oldtitle">
-        <input type="text" value="{{danceclass.name}}" name="newtitle">
-        <input type="submit" value="Update">
-      </form>
-      <form method="POST" action="./delete">
-        <input type="hidden" value="{{danceclass.name}}" name="title">
-        <input type="submit" value="Delete">
-      </form>
+   <table class='table table-striped'>
+     <tr>
+       <th>id</th>
+       <th>name</th>
+       <th>length</th>
+       <th>description</th>
+       <th></th>
+       <th></th>
+    </tr>
+    {% for danceclass in danceclasses %}
+    <tr>
+        <td>{{ danceclass.id }}</a></td>
+        <td><a href="{{danceclass.id}}">{{ danceclass.name }}</a></td>
+        <td>{{ danceclass.length }}</a></td>
+        <td>{{ danceclass.descr }}</a></td>
+        <td><a href="#" class="btn btn-primary">Edit</a></td>
+        <td><form action="{{ url_for('danceclass_delete', id=danceclass.id) }}" method="post">
+          <input type="hidden" name="_method" value="DELETE">
+          <input type="submit" value="Delete" class="btn btn-danger">
+        </form>
+      
+    </tr>
     {% endfor %}
-  </table>
+   </table>
+     
+   
+  
+
 {% endblock %}
