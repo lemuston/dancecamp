@@ -2,31 +2,42 @@
 
   {% block body %}
   <form method="POST" action="{{ url_for('danceclass_create') }}">
-    <table>
-      <tr>
-	<td>
+      <div class="form-group">
 	  {{ form.name.label }}
-	</td>
-	<td>
-	  {{ form.name }}
-  </td>
-  <td>
+        
+    {{ form.name }}
+  </div>
+  <div class="form-group">
       {{ form.length.label }}
-    </td>
-    <td>
+   
       {{ form.length }}
-    </td>
-    <td>
+    </div>
+    <div class="form-group">
         {{ form.descr.label }}
-      </td>
-      <td>
+      
         {{ form.descr }}
-      </td>
-      </tr>
-      <tr>
-	<td colspan="2">
+      </div>
+      <div class="form-group">
+     Select teacher:
+      <select class="selectpicker" name="teacher_id" required>
+          {% for teacher in teachers %}
+              <option value="{{ teacher.id }}" {%if danceclass is defined %}{% if danceclass.teacher_id == teacher.id %} selected {% endif %}{% endif %}>{{ teacher.name }}</option>
+          {% endfor %}
+      </select>
+      <a href ={{ url_for('teacher_form') }}>Or add a new</a></div>
+      <div class="form-group">
+        Select location:
+        <select class="selectpicker" name="location_id" required>
+            {% for location in locations %}
+                <option value="{{ location.id }}" {%if danceclass is defined %}{% if danceclass.location_id == location.id %} selected {% endif %}{% endif %}>{{ location.name }}</option>
+            {% endfor %}
+        </select>
+        <a href ={{ url_for('location_form') }}>Or add a new</a></div>
+
+
+        <div class="form-group">
 	  <input type="submit" value="Add a new danceclass"/>
-	</td>
-      </tr>
+	</div>
   </form>
+  
   {% endblock %}

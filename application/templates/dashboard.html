@@ -1,0 +1,111 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+
+
+  
+
+
+  <h1>Danceclasses:</h1>
+    <ul class='list-group'>
+       <table class='table table-striped'>
+        <tr>
+         
+         <th>name</th>
+         <th>length</th>
+         <th>description</th>
+         <th></th>
+         <th></th>
+       </tr>
+    {% for danceclass in danceclasses %}
+    <tr>
+        
+        <td><a href="{{danceclass.id}}">{{ danceclass.name }}</a></td>
+        <td>{{ danceclass.length }}</a></td>
+        <td>{{ danceclass.descr }}</a></td>
+        <td><a href="#" class="btn btn-primary">Edit</a></td>
+        <td><form action="{{ url_for('danceclass_delete', id=danceclass.id) }}" method="post">
+          <input type="hidden" name="_method" value="DELETE">
+          <input type="submit" value="Delete" class="btn btn-danger">
+        </form>
+      </ul>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <p align=center>
+      <a href ={{ url_for('danceclass_form') }}>Add a new danceclass</a>
+     </p>
+<h1>Teachers: </h1>
+<ul class='list-group'>
+    <table class='table table-striped'>
+        <tr>
+         
+            <th>name</th>
+            <th>description</th>
+            <th></th>
+            <th></th>
+          </tr>
+</tr>
+{% for teacher in teachers %}
+<tr>
+    
+    <td><a href="{{teacher.id}}">{{ teacher.name }}</a></td>
+   
+    <td>{{ teacher.descr }}</a></td>
+    <td><a href="#" class="btn btn-primary">Edit</a></td>
+        <td><form action="{{ url_for('teacher_delete', id=teacher.id) }}" method="post">
+          <input type="hidden" name="_method" value="DELETE">
+          <input type="submit" value="Delete" class="btn btn-danger">
+        </form>
+    
+  
+</tr>
+</ul>
+{% endfor %}
+   </table>
+   <p align=center>
+   <a href ={{ url_for('teacher_form') }}>Add new teacher</a>
+  </p>
+
+   <h1>Locations: </h1>
+   <ul class='list-group'>
+       <table class='table table-striped'>
+           <tr>
+            
+               <th>name</th>
+               <th>address</th>
+               <th>city</th>
+               <th></th>
+               <th></th>
+             </tr>
+   </tr>
+   {% for location in locations %}
+   <tr>
+       
+       
+      
+       <td>{{ location.name }}</a></td>
+       <td>{{ location.address }}</a></td>
+       <td>{{ location.city }}</a></td>
+       <td><a href="#" class="btn btn-primary">Edit</a></td>
+           <td><form action="{{ url_for('location_delete', id=location.id) }}" method="post">
+             <input type="hidden" name="_method" value="DELETE">
+             <input type="submit" value="Delete" class="btn btn-danger">
+           </form>
+       
+     
+   </tr>
+   </ul>
+   {% endfor %}
+      </table>
+      <p align=center>
+          <a href ={{ url_for('location_form') }}>Add new location</a>
+         </p>
+
+      
+  
+
+{% endblock %}
+   

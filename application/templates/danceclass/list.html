@@ -11,15 +11,23 @@
        <th>name</th>
        <th>length</th>
        <th>description</th>
+       <th>teacher</th>
+       <th>location</th>
        <th></th>
        <th></th>
     </tr>
     {% for danceclass in danceclasses %}
+    
+    
     <tr>
-        <td>{{ danceclass.id }}</a></td>
+        <td>{{ danceclass.id }}</td>
         <td><a href="{{danceclass.id}}">{{ danceclass.name }}</a></td>
         <td>{{ danceclass.length }}</a></td>
         <td>{{ danceclass.descr }}</a></td>
+        <td><a href="{{danceclass.teacher.id}}">{{ danceclass.teacher.name }}</a></td>
+        <td>{{ danceclass.location.name}}</td>
+        
+
         <td><a href="#" class="btn btn-primary">Edit</a></td>
         <td><form action="{{ url_for('danceclass_delete', id=danceclass.id) }}" method="post">
           <input type="hidden" name="_method" value="DELETE">

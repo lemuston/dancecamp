@@ -2,15 +2,16 @@
     <div class='container'>
         
         <a class="navbar-brand" href="/">Go home</a>
-        <li class='nav-item'><a href="{{ url_for('danceclass_form') }}">Add new class</a></li>
-        <li class='nav-item'><a href="{{ url_for('danceclass_index') }}">List classes</a></li>
+        <li class='nav-item'><a href="{{ url_for('dashboard') }}">Dashboard for admins</a></li>
+        
+        
         <li>
         {% if current_user.is_authenticated %}
         <p>
-            Kirjautunut nimellä {{ current_user.name }}. <a href="{{ url_for('auth_logout') }}">Kirjaudu ulos</a>
+         {{ current_user.name }} is signed in. <a href="{{ url_for('auth_logout') }}">Sign out</a>
         </p>
         {% else %}
-        <a href="{{ url_for('auth_login') }}">Kirjaudu</a>
+        <a href="{{ url_for('auth_login') }}">Sign in</a>
         {% endif %}
         </li>
            

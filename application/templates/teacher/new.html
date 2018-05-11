@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<form method="POST" action="{{ url_for('teacher_create') }}">
+        <table>
+          <tr>
+        <td>
+          {{ teacherform.name.label }}
+        </td>
+        <td>
+          {{ teacherform.name }}
+      </td>
+      </tr>
+      <tr>
+                  <td>
+            {{ teacherform.descr.label }}
+          </td>
+          <td>
+            {{ teacherform.descr }}
+          </td>
+         
+        </td>
+          <tr>
+        <td colspan="2">
+          <input type="submit" value="Add a new teacher"/>
+        </td>
+          </tr>
+      </form>
+
+{% endblock %}

@@ -10,10 +10,7 @@ class User(Base):
 
     phone = db.Column(db.String(144))
     email = db.Column(db.String(100))
-    
-
-    #danceclass = db.relationship("Danceclass", backref='account', lazy=True)
-  
+      
     def __init__(self, name):
         self.name = name
 

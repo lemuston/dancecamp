@@ -3,6 +3,40 @@
 {% block body %}
   
    <h1>Welcome to Midnight Sun Dancecamp</h1>
-   <p>Dancecamp will be held in beautiful Helsinki and will offer danceclasses suitable for everyone</p>
+   <p>Dancecamp will be held in beautiful Helsinki and will offer danceclasses suitable for everyone.</p>
+
+   <table class='table table-striped'>
+        <tr>
+          
+          <th>name</th>
+          <th>duration</th>
+          <th>description</th>
+          <th>teacher</th>
+          <th>location</th>
+          <th></th>
+          <th></th>
+       </tr>
+       {% for danceclass in danceclasses %}
+       
+       <tr>
+           
+           <td><a href="{{danceclass.id}}">{{ danceclass.name }}</a></td>
+           <td>{{ danceclass.length }}</a></td>
+           <td>{{ danceclass.descr }}</a></td>
+           <td><a href="{{danceclass.teacher.id}}"></a>{{ danceclass.teacher.name }}</a></td>
+           <td>{{ danceclass.location.name}}</td>
+          
+   
+           
+          
+            
+                
+            
+            
+         
+       </tr>
+       {% endfor %}
+      </table>
+        
 {% endblock %}
 

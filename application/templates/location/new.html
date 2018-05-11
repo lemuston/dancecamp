@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<form method="POST" action="{{ url_for('location_create') }}">
+        <table>
+          <tr>
+        <td>
+          {{ locationform.name.label }}
+        </td>
+        <td>
+          {{ locationform.name }}
+      </td>
+      
+        <td>
+            {{ locationform.address.label }}
+          </td>
+          <td>
+            {{ locationform.address }}
+          </td>
+         
+        </td>
+
+        <td>
+                {{ locationform.city.label }}
+              </td>
+              <td>
+                {{ locationform.city }}
+              </td>
+             
+            </td>
+          <tr>
+        <td colspan="2">
+          <input type="submit" value="Add a new location"/>
+        </td>
+          </tr>
+      </form>
+
+{% endblock %}

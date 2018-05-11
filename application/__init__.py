@@ -64,8 +64,10 @@ from application.auth import models
 from application.auth import views
 
 from application.teacher import models
+from application.teacher import views
 
 from application.location import models
+from application.location import views
 
 from application.userdanceclass import models
 
